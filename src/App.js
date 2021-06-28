@@ -1,12 +1,14 @@
-import logo from './logo.svg';
-import './App.css';
+import logo from "./logo.svg";
+import { Navbar } from "./components/Navbar";
+import "./App.css";
 
-function App() {
+const App = () => {
   return (
     <div className="App">
+      <Navbar />
       <h1>Breaking Stats</h1>
     </div>
   );
-}
+};
 
 export default App;
