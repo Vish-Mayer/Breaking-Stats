@@ -1,5 +1,8 @@
 import React from "react";
+import "./Container.css";
 import { useCharacter } from "../../hooks/useCharacter";
+import { formatCard } from "../../helpers/formatCard";
+import Card from "../Card/CardUI";
 
 const Container = () => {
   const [userActive, setUserActive] = React.useState(false);
@@ -43,15 +46,22 @@ const Container = () => {
               {isLoading ? (
                 <h4>Loading...</h4>
               ) : (
-                character &&
-                character.map((result, idx) => {
-                  return (
-                    <ul key={idx}>
-                      <li>{result.name}</li>
-                      <img src={result.img} />
-                    </ul>
-                  );
-                })
+                <div className="container-fluid d-flex justify-content-center">
+                  <div className="row">
+                    {character &&
+                      character.map((result, idx) => {
+                        return (
+                          <div className={formatCard(character.length)}>
+                            <Card
+                              title={result.name}
+                              imgsrc={result.img}
+                              nickname={`"${result.nickname}"`}
+                            />
+                          </div>
+                        );
+                      })}
+                  </div>
+                </div>
               )}
             </div>
           )}
