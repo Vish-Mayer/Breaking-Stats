@@ -13,10 +13,10 @@ describe("useCharacter", () => {
   it("fetches a character by the url", async () => {
     global.fetch = jest.fn();
 
-    await act(async () => renderHook(() => useCharacter("Walter+White")));
+    await act(async () => renderHook(() => useCharacter()));
 
     expect(global.fetch).toBeCalledWith(
-      `https://www.breakingbadapi.com/api/characters?name=Walter+White`
+      `https://www.breakingbadapi.com/api/characters?name=null`
     );
   });
 

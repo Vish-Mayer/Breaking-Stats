@@ -1,10 +1,10 @@
-import { useCallback, useEffect, useState } from "react";
-import axios from "axios";
+import { useEffect, useState } from "react";
 
-const useCharacter = characterName => {
-  const [character, setCharacter] = useState(null);
-  const [isLoading, setIsLoading] = useState(true);
-  const [error, setError] = useState(true);
+const useCharacter = () => {
+  const [characterName, setCharacterName] = useState(null);
+  const [character, setCharacter] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState("");
 
   const url = `https://www.breakingbadapi.com/api/characters?name=${characterName}`;
 
@@ -13,18 +13,26 @@ const useCharacter = characterName => {
       setIsLoading(true);
       try {
         const response = await fetch(url);
-
         const data = await response.json();
-        setCharacter(data);
-      } catch (e) {
-        setError(e);
+        setData(data);
+      } catch (err) {
+        setError(err);
       }
       setIsLoading(false);
     };
     fetchData();
-  }, [url]);
+  }, [characterName, url]);
+
+  const setData = data => {
+    if (data.length === 0) {
+      setCharacter(null);
+    } else {
+      setCharacter(data);
+    }
+  };
 
   return {
+    setCharacterName,
     character,
     isLoading,
     error
