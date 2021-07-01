@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
 
 const useCharacter = () => {
-  const [characterName, setCharacterName] = useState(null);
+  const [userSearch, setUserSearch] = useState(null);
   const [character, setCharacter] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
 
-  const url = `https://www.breakingbadapi.com/api/characters?name=${characterName}`;
+  const url = `https://www.breakingbadapi.com/api/characters?name=${userSearch}`;
 
   useEffect(() => {
     const fetchData = async () => {
@@ -21,7 +21,7 @@ const useCharacter = () => {
       setIsLoading(false);
     };
     fetchData();
-  }, [characterName, url]);
+  }, [userSearch, url]);
 
   const setData = data => {
     if (data.length === 0) {
@@ -32,7 +32,7 @@ const useCharacter = () => {
   };
 
   return {
-    setCharacterName,
+    setUserSearch,
     character,
     isLoading,
     error
