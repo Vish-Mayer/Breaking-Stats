@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 
 const useCharacter = () => {
-  const [userSearch, setUserSearch] = useState(null);
+  const [userSearch, setUserSearch] = useState("");
   const [character, setCharacter] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
@@ -21,7 +21,7 @@ const useCharacter = () => {
       setIsLoading(false);
     };
     fetchData();
-  }, [userSearch, url]);
+  }, [url]);
 
   const setData = data => {
     if (data.length === 0) {

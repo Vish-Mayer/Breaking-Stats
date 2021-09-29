@@ -16,7 +16,7 @@ describe("useCharacter", () => {
     await act(async () => renderHook(() => useCharacter()));
 
     expect(global.fetch).toBeCalledWith(
-      `https://www.breakingbadapi.com/api/characters?name=null`
+      `https://www.breakingbadapi.com/api/characters?name=`
     );
   });
 
